@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shinigami Robot Form</title>
+</head>
+<body>
+
+<form id="askForm">
+  <input name="name" placeholder="Your name" required />
+  <input name="email" placeholder="Your email" required />
+  <textarea name="message" placeholder="Write your report..." required></textarea>
+
+  <button type="submit" id="sendBtn">Send</button>
+</form>
+
+<script>
+const form = document.getElementById("askForm");
+const btn = document.getElementById("sendBtn");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  btn.innerText = "Sending...";
+  btn.disabled = true;
+
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    message: form.message.value
+  };
+
+  try {
+    const res = await fetch("http://localhost:3000/api/ask-team", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "YOUR_SECRET_KEY"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      alert("✅ Report sent to WhatsApp bot!");
+      form.reset();
+    } else {
+      alert("❌ Failed: " + result.message);
+    }
+
+  } catch (err) {
+    alert("❌ Server error");
+  }
+
+  btn.innerText = "Send";
+  btn.disabled = false;
+});
+</script>
+
+</body>
+</html>
