@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shinigami Robot Form</title>
+  <title>Shinigami Robot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<form id="askForm">
-  <input name="name" placeholder="Your name" required />
-  <input name="email" placeholder="Your email" required />
-  <textarea name="message" placeholder="Write your report..." required></textarea>
+<body class="bg-black text-white flex items-center justify-center min-h-screen">
 
-  <button type="submit" id="sendBtn">Send</button>
-</form>
+<div class="w-full max-w-md p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+
+  <h1 class="text-xl font-bold text-center mb-4">Shinigami Robot</h1>
+
+  <form id="askForm" class="space-y-3">
+
+    <input name="name" placeholder="Name"
+      class="w-full p-3 rounded bg-black/40 border border-white/10"/>
+
+    <input name="email" placeholder="Email"
+      class="w-full p-3 rounded bg-black/40 border border-white/10"/>
+
+    <textarea name="message" placeholder="Message"
+      class="w-full p-3 rounded bg-black/40 border border-white/10"></textarea>
+
+    <button id="sendBtn"
+      class="w-full py-3 rounded bg-gradient-to-r from-cyan-500 to-blue-600">
+      Send
+    </button>
+
+  </form>
+
+</div>
 
 <script>
 const form = document.getElementById("askForm");
@@ -29,28 +47,18 @@ form.addEventListener("submit", async (e) => {
     message: form.message.value
   };
 
-  try {
-    const res = await fetch("http://localhost:3000/api/ask-team", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "YOUR_SECRET_KEY"
-      },
-      body: JSON.stringify(data)
-    });
+  const res = await fetch("http://localhost:3000/api/ask-team", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": "shinigami-robot-12345"
+    },
+    body: JSON.stringify(data)
+  });
 
-    const result = await res.json();
+  const result = await res.json();
 
-    if (result.success) {
-      alert("✅ Report sent to WhatsApp bot!");
-      form.reset();
-    } else {
-      alert("❌ Failed: " + result.message);
-    }
-
-  } catch (err) {
-    alert("❌ Server error");
-  }
+  alert(result.success ? "Sent!" : "Failed!");
 
   btn.innerText = "Send";
   btn.disabled = false;
