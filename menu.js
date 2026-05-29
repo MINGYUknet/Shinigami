@@ -1,10 +1,10 @@
 const menuItems = [
-  { name: "Home", page: "/pages/home.html" },
-  { name: "Gallery", page: "/pages/gallery.html" },
-  { name: "Video", page: "/pages/video.html" },
-  { name: "Social", page: "/pages/social.html" },
-  { name: "Contact", page: "/pages/contact.html" },
-  { name: "Ask Team", page: "/pages/askteam.html" }
+  { name: "Home", page: "home.html" },
+  { name: "Gallery", page: "/gallery/gallery.html" },
+  { name: "Video", page: "/video/video.html" },
+  { name: "Social", page: "/social/social.html" },
+  { name: "Contact", page: "/contact/contact.html" },
+  { name: "Ask Team", page: "/team/askteam.html" }
 ];
 
 // render menu
