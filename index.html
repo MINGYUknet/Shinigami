@@ -1,88 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Shinigami SaaS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maintenance Mode</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
 
-<style>
-body {
-  font-family: Inter, sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #000);
-  overflow: hidden;
-}
+    .box {
+      max-width: 500px;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
 
-/* glass effect */
-.glass {
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(14px);
-  border-right: 1px solid rgba(255,255,255,0.08);
-}
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
 
-/* glow active */
-.active {
-  background: rgba(34,211,238,0.12);
-  border-left: 3px solid #22d3ee;
-  color: #22d3ee;
-}
+    p {
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
 
-/* iframe transition */
-iframe {
-  transition: opacity 0.3s ease;
-}
-</style>
+    .time {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #38bdf8;
+    }
+
+    .countdown {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fbbf24;
+    }
+
+    .small {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 
-<body class="text-white">
+<body>
 
-<!-- SIDEBAR -->
-<div class="fixed left-0 top-0 w-64 h-full glass p-4">
+  <div class="box">
+    <h1>🔧 Maintenance Mode</h1>
+    <p>Website sedang dalam proses perbaikan sistem</p>
 
-  <h1 class="text-xl font-bold mb-6 tracking-widest text-cyan-400">
-    SHINIGAMI SaaS
-  </h1>
+    <div class="time" id="clock">Loading waktu...</div>
 
-  <ul id="menuList" class="space-y-2"></ul>
-</div>
+    <div class="countdown" id="countdown"></div>
 
-<!-- TOP BAR -->
-<div class="fixed left-64 top-0 right-0 h-14 glass flex items-center px-6">
-  <p class="text-sm text-gray-300">Dashboard / <span id="pageTitle">Home</span></p>
-</div>
+    <div class="small">Mohon kembali lagi nanti</div>
+  </div>
 
-<!-- CONTENT -->
-<div class="ml-64 mt-14 h-screen">
-  <iframe id="frame" class="w-full h-full border-0"></iframe>
-</div>
-
-<script src="/menu.js"></script>
-
-<script>
-const frame = document.getElementById("frame");
-const title = document.getElementById("pageTitle");
-
-function loadPage(page, name){
-  frame.style.opacity = 0;
-
-  setTimeout(() => {
-    frame.src = page;
-    title.innerText = name;
-    setActive(name);
-    frame.style.opacity = 1;
-  }, 200);
-}
-
-function setActive(name){
-  document.querySelectorAll(".menu-item").forEach(el => {
-    el.classList.remove("active");
-    if(el.innerText === name){
-      el.classList.add("active");
+  <script>
+    // JAM REAL TIME
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").innerText =
+        "Waktu sekarang: " + now.toLocaleString("id-ID");
     }
-  });
-}
-</script>
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // COUNTDOWN MAINTENANCE SELESAI
+    // ubah tanggal di bawah sesuai kebutuhan
+    const maintenanceEnd = new Date();
+    maintenanceEnd.setHours(maintenanceEnd.getHours() + 3); // 3 jam dari sekarang
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = maintenanceEnd - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerText = "Maintenance selesai!";
+        return;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText =
+        `Estimasi selesai: ${hours}j ${minutes}m ${seconds}d`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 
 </body>
 </html>
