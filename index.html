@@ -3,41 +3,85 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Shinigami Robot</title>
+<title>Shinigami SaaS</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+  font-family: Inter, sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #000);
+  overflow: hidden;
+}
+
+/* glass effect */
+.glass {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+/* glow active */
+.active {
+  background: rgba(34,211,238,0.12);
+  border-left: 3px solid #22d3ee;
+  color: #22d3ee;
+}
+
+/* iframe transition */
+iframe {
+  transition: opacity 0.3s ease;
+}
+</style>
 </head>
 
-<body class="bg-black text-white">
-
-<!-- NAV -->
-<div class="fixed top-0 w-full flex justify-between p-4 bg-black/70 z-50">
-  <h1 class="font-bold">Shinigami Robot</h1>
-  <button onclick="openMenu()">☰</button>
-</div>
+<body class="text-white">
 
 <!-- SIDEBAR -->
-<div id="sidebar" class="fixed right-0 top-0 w-72 h-full bg-gray-900 p-5 translate-x-full transition">
-  <button onclick="closeMenu()">✕</button>
+<div class="fixed left-0 top-0 w-64 h-full glass p-4">
 
-  <ul id="menuList" class="mt-5 space-y-3"></ul>
+  <h1 class="text-xl font-bold mb-6 tracking-widest text-cyan-400">
+    SHINIGAMI SaaS
+  </h1>
+
+  <ul id="menuList" class="space-y-2"></ul>
 </div>
 
-<!-- FRAME -->
-<iframe id="frame" class="w-full h-screen border-0 pt-14"></iframe>
+<!-- TOP BAR -->
+<div class="fixed left-64 top-0 right-0 h-14 glass flex items-center px-6">
+  <p class="text-sm text-gray-300">Dashboard / <span id="pageTitle">Home</span></p>
+</div>
 
-<script src="menu.js"></script>
+<!-- CONTENT -->
+<div class="ml-64 mt-14 h-screen">
+  <iframe id="frame" class="w-full h-full border-0"></iframe>
+</div>
+
+<script src="/menu.js"></script>
 
 <script>
-// sidebar control
-function openMenu(){
-  document.getElementById("sidebar").classList.remove("translate-x-full");
-}
-function closeMenu(){
-  document.getElementById("sidebar").classList.add("translate-x-full");
+const frame = document.getElementById("frame");
+const title = document.getElementById("pageTitle");
+
+function loadPage(page, name){
+  frame.style.opacity = 0;
+
+  setTimeout(() => {
+    frame.src = page;
+    title.innerText = name;
+    setActive(name);
+    frame.style.opacity = 1;
+  }, 200);
 }
 
-// default page
-document.getElementById("frame").src = "home.html";
+function setActive(name){
+  document.querySelectorAll(".menu-item").forEach(el => {
+    el.classList.remove("active");
+    if(el.innerText === name){
+      el.classList.add("active");
+    }
+  });
+}
 </script>
 
 </body>
