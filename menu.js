@@ -3,7 +3,7 @@ const MENU_CONFIG = {
   items: [
     { name: "Dashboard", icon: "🏠", link: "index.html" },
     { name: "Gallery", icon: "🖼️", link: "gallery.html" },
-    { name: "Settings", icon: "⚙️", link: "settings.html" }
+    { name: "Video", icon: "🎞️", link: "video.html" }
   ]
 };
 
