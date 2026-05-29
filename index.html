@@ -1,131 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Shinigami Robot</title>
-
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-
-<style>
-  body { font-family: Inter, sans-serif; }
-  .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
-</style>
 </head>
 
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-black text-white">
 
-<!-- LOADING -->
-<div id="loading" class="fixed inset-0 flex items-center justify-center bg-black z-50">
-  <h1 class="text-xl animate-pulse">Shinigami Robot Loading...</h1>
-</div>
-
-<!-- NAVBAR -->
-<div class="fixed top-0 w-full flex justify-between items-center p-4 glass z-40">
-  <h1 class="font-bold tracking-widest">Shinigami Robot</h1>
-  <button onclick="openMenu()" class="text-2xl">☰</button>
+<!-- NAV -->
+<div class="fixed top-0 w-full flex justify-between p-4 bg-black/70 z-50">
+  <h1 class="font-bold">Shinigami Robot</h1>
+  <button onclick="openMenu()">☰</button>
 </div>
 
 <!-- SIDEBAR -->
-<div id="sidebar" class="fixed top-0 right-0 w-72 h-full bg-black/95 p-6 transform translate-x-full transition duration-300 z-50">
-  <button onclick="closeMenu()" class="text-xl mb-6">✕</button>
+<div id="sidebar" class="fixed right-0 top-0 w-72 h-full bg-gray-900 p-5 translate-x-full transition">
+  <button onclick="closeMenu()">✕</button>
 
-  <ul id="menuList" class="space-y-4"></ul>
+  <ul id="menuList" class="mt-5 space-y-3"></ul>
 </div>
 
-<!-- HERO -->
-<section id="home" class="h-screen flex items-center justify-center text-center px-4">
-  <div>
-    <h1 class="text-4xl font-bold mb-2">Welcome to Shinigami Robot</h1>
-    <p class="text-gray-400">Elegant system • Modern UI • Future Bot Design</p>
-  </div>
-</section>
+<!-- FRAME -->
+<iframe id="frame" class="w-full h-screen border-0 pt-14"></iframe>
 
-<!-- GALLERY -->
-<section id="gallery" class="p-10">
-  <h2 class="text-2xl mb-4 font-bold">Gallery</h2>
-  <div class="grid grid-cols-2 gap-4">
-    <img class="rounded-xl hover:scale-105 transition" src="https://source.unsplash.com/400x400/?robot" />
-    <img class="rounded-xl hover:scale-105 transition" src="https://source.unsplash.com/400x400/?technology" />
-  </div>
-</section>
+<script src="menu.js"></script>
 
-<!-- VIDEO -->
-<section id="video" class="p-10">
-  <h2 class="text-2xl mb-4 font-bold">Video</h2>
-  <video class="rounded-xl w-full" controls>
-    <source src="https://www.w3schools.com/html/mov_bbb.mp4">
-  </video>
-</section>
-
-<!-- SOCIAL -->
-<section id="social" class="p-10">
-  <h2 class="text-2xl mb-4 font-bold">Social Media</h2>
-  <div class="flex gap-4">
-    <a class="text-cyan-400 hover:underline">Instagram</a>
-    <a class="text-blue-400 hover:underline">Facebook</a>
-    <a class="text-green-400 hover:underline">WhatsApp</a>
-  </div>
-</section>
-
-<!-- ASK TEAM -->
-<section id="askteam" class="p-10">
-  <h2 class="text-2xl mb-4 font-bold">Ask Team</h2>
-
-  <div class="space-y-3">
-    <input id="a_name" class="w-full p-3 rounded bg-gray-800" placeholder="Your Name"/>
-    <input id="a_email" class="w-full p-3 rounded bg-gray-800" placeholder="Your Email"/>
-    <textarea id="a_message" class="w-full p-3 rounded bg-gray-800" placeholder="Ask something..."></textarea>
-
-    <button onclick="sendMessage('ask')" 
-      class="px-4 py-2 bg-gradient-to-r from-green-500 to-cyan-600 rounded-xl hover:scale-105 transition">
-      Send to Team
-    </button>
-  </div>
-</section>
-
-<!-- SCRIPT -->
 <script>
-// LOADING
-window.onload = () => {
-  setTimeout(() => {
-    document.getElementById("loading").style.display = "none";
-  }, 1200);
-};
-
-// MENU DATA (GABUNG DI SINI)
-const menuItems = [
-  { name: "Home", target: "home" },
-  { name: "Gallery", target: "gallery" },
-  { name: "Video", target: "video" },
-  { name: "Social", target: "social" },
-  { name: "Contact", target: "contact" },
-  { name: "Ask Team", target: "askteam" }
-];
-
-// RENDER MENU
-function loadMenu() {
-  const menuList = document.getElementById("menuList");
-
-  menuItems.forEach(item => {
-    const li = document.createElement("li");
-
-    li.innerText = item.name;
-    li.className = "cursor-pointer hover:text-cyan-400";
-
-    li.onclick = () => {
-      document.getElementById(item.target)
-        .scrollIntoView({ behavior: "smooth" });
-
-      closeMenu();
-    };
-
-    menuList.appendChild(li);
-  });
-}
-
-// SIDEBAR CONTROL
+// sidebar control
 function openMenu(){
   document.getElementById("sidebar").classList.remove("translate-x-full");
 }
@@ -133,52 +36,8 @@ function closeMenu(){
   document.getElementById("sidebar").classList.add("translate-x-full");
 }
 
-// SCROLL FUNCTION (optional helper)
-function scrollTo(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-  closeMenu();
-}
-
-// SEND MESSAGE (CONTACT + ASK TEAM)
-async function sendMessage(type) {
-
-  let name, email, message;
-
-  if (type === "contact") {
-    name = document.getElementById("c_name").value;
-    email = document.getElementById("c_email").value;
-    message = document.getElementById("c_message").value;
-  }
-
-  if (type === "ask") {
-    name = document.getElementById("a_name").value;
-    email = document.getElementById("a_email").value;
-    message = document.getElementById("a_message").value;
-  }
-
-  if (!name || !message) {
-    alert("Name & message wajib diisi!");
-    return;
-  }
-
-  const res = await fetch("/api/message", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ type, name, email, message })
-  });
-
-  const data = await res.json();
-
-  if (data.success) {
-    alert("Message sent to wakeoneteam@gmail.com");
-  } else {
-    alert("Failed to send message");
-  }
-}
-
-// INIT MENU
-loadMenu();
-
+// default page
+document.getElementById("frame").src = "/pages/home.html";
 </script>
 
 </body>
