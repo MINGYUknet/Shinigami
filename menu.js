@@ -3,7 +3,8 @@ const menuItems = [
   { name: "Gallery", target: "gallery" },
   { name: "Video", target: "video" },
   { name: "Social", target: "social" },
-  { name: "Contact", target: "contact" }
+  { name: "Contact", target: "contact" },
+  { name: "Team Ask", target: "team/ask.html" }
 ];
 
 // render menu otomatis
