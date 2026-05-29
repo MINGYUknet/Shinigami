@@ -4,7 +4,7 @@ const menuItems = [
   { name: "Video", page: "/video/video.html" },
   { name: "Social", page: "/social/social.html" },
   { name: "Contact", page: "/contact/contact.html" },
-  { name: "Ask Team", page: "/team/askteam.html" }
+  { name: "Ask Team", page: "/team/ask.html" }
 ];
 
 // render menu
