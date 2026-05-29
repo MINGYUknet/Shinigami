@@ -1,41 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ask Admin</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-black text-white flex items-center justify-center min-h-screen">
+<body class="bg-black text-white p-10">
 
-<div class="w-full max-w-md p-6 bg-gray-900 rounded-xl">
+<h1 class="text-3xl font-bold mb-4">Ask Team</h1>
 
-  <h1 class="text-xl font-bold mb-4 text-center">Ask Admin</h1>
+<input id="name" class="w-full p-3 mb-2 bg-gray-800" placeholder="Name"/>
+<textarea id="message" class="w-full p-3 mb-2 bg-gray-800" placeholder="Message"></textarea>
 
-  <input id="name" class="w-full p-3 mb-3 bg-black border rounded" placeholder="Name">
-  <textarea id="message" class="w-full p-3 mb-3 bg-black border rounded h-32" placeholder="Message"></textarea>
-
-  <button onclick="send()" class="w-full bg-cyan-600 p-3 rounded">
-    Send
-  </button>
-
-</div>
+<button onclick="send()" class="bg-green-600 px-4 py-2 rounded">
+Send
+</button>
 
 <script>
-async function send() {
-  const name = document.getElementById("name").value;
-  const message = document.getElementById("message").value;
-
-  const res = await fetch("/api/ask", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ name, message })
+async function send(){
+  await fetch("/api/message", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      type:"ask",
+      name:document.getElementById("name").value,
+      message:document.getElementById("message").value
+    })
   });
 
-  const data = await res.json();
-
-  alert(data.success ? "Sent!" : "Failed!");
+  alert("Sent!");
 }
 </script>
 
