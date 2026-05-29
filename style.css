@@ -1,0 +1,69 @@
+/* =========================
+   GLOBAL MAINTENANCE STYLE
+   ========================= */
+
+body.maintenance-active {
+  overflow: hidden;
+}
+
+body.maintenance-active * {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+/* OVERLAY FULL SCREEN */
+#maintenance-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  font-family: system-ui, Arial, sans-serif;
+  color: white;
+}
+
+/* CARD */
+#maintenance-box {
+  text-align: center;
+  padding: 40px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  max-width: 520px;
+  width: 90%;
+  backdrop-filter: blur(10px);
+}
+
+#maintenance-box h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+#maintenance-box p {
+  opacity: 0.75;
+  margin-bottom: 20px;
+}
+
+#maintenance-time {
+  font-size: 16px;
+  color: #38bdf8;
+  margin-top: 10px;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(56,189,248,0.15);
+  color: #38bdf8;
+  font-size: 12px;
+}
+
+.icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
