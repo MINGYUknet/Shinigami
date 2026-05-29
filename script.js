@@ -2,7 +2,7 @@
 // WEBSITE STATUS
 // =========================
 
-const WEBSITE_ONLINE = false;
+const WEBSITE_ONLINE = true;
 
 // =========================
 // MAINTENANCE CONTROLLER
