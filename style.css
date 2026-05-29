@@ -7,8 +7,18 @@ body.maintenance-active {
 }
 
 body.maintenance-active * {
-  pointer-events: none !important;
   user-select: none !important;
+}
+
+/* lock semua halaman di belakang overlay */
+body.maintenance-active > *:not(#maintenance-overlay) {
+  pointer-events: none !important;
+}
+
+/* overlay tetap bisa diklik */
+#maintenance-overlay,
+#maintenance-overlay * {
+  pointer-events: auto !important;
 }
 
 /* OVERLAY FULL SCREEN */
