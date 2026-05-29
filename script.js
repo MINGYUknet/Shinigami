@@ -18,9 +18,21 @@ function createMaintenanceOverlay() {
 
       <div id="maintenance-time">Loading waktu...</div>
 
-      <div class="badge">Semua halaman sementara tidak dapat diakses</div>
+       <div class="badge">
+      Semua halaman sementara tidak dapat diakses
     </div>
-  `;
+
+    <!-- WHATSAPP CHANNEL BUTTON -->
+    <a
+      href="https://whatsapp.com/channel/0029VbDSjy81dAw1Eyd5gy3i"
+      target="_blank"
+      class="wa-button"
+    >
+      💬 Join WhatsApp Channel
+    </a>
+
+  </div>
+`;
 
   document.body.appendChild(overlay);
 
