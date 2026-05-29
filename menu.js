@@ -4,7 +4,7 @@ const menuItems = [
   { name: "Video", target: "video" },
   { name: "Social", target: "social" },
   { name: "Contact", target: "contact" },
-  { name: "Team Ask", target: "team/ask.html" }
+  { name: "Team Ask", target: "ask" }
 ];
 
 // render menu otomatis
