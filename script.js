@@ -2,7 +2,7 @@
 // MAINTENANCE CONTROLLER
 // =========================
 
-const MAINTENANCE_MODE = true; // ubah false untuk nonaktif
+const MAINTENANCE_MODE = false; // ubah false untuk nonaktif
 
 function createMaintenanceOverlay() {
   document.body.classList.add("maintenance-active");
