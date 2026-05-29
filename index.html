@@ -2,17 +2,115 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dashboard</title>
 
-  <!-- LINK CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <h1>Halaman Home</h1>
-  <p>Konten website normal di sini...</p>
+  <div class="page-wrapper">
 
-  <!-- SCRIPT GLOBAL -->
+    <!-- HERO -->
+    <div style="text-align:center; margin-bottom:30px;">
+      <h1 style="font-size:34px;">🚀 Welcome Back</h1>
+      <p style="opacity:0.7;">Dashboard sistem modern kamu sudah aktif</p>
+    </div>
+
+    <!-- ANNOUNCEMENT -->
+    <div style="
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.3);
+      padding: 15px;
+      border-radius: 12px;
+      text-align:center;
+      margin-bottom:20px;
+    ">
+      📢 Sistem berjalan normal • Semua fitur aktif • Last update: hari ini
+    </div>
+
+    <!-- STATS -->
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:15px;
+      margin-bottom:30px;
+    ">
+
+      <div class="menu-item" style="flex-direction:column; text-align:center;">
+        <div style="font-size:28px;">👤</div>
+        <div>User Aktif</div>
+        <b>1,248</b>
+      </div>
+
+      <div class="menu-item" style="flex-direction:column; text-align:center;">
+        <div style="font-size:28px;">⚡</div>
+        <div>Request</div>
+        <b>8,392</b>
+      </div>
+
+      <div class="menu-item" style="flex-direction:column; text-align:center;">
+        <div style="font-size:28px;">🖼️</div>
+        <div>Gallery</div>
+        <b>64 Items</b>
+      </div>
+
+      <div class="menu-item" style="flex-direction:column; text-align:center;">
+        <div style="font-size:28px;">🟢</div>
+        <div>Status</div>
+        <b>Online</b>
+      </div>
+
+    </div>
+
+    <!-- QUICK ACTION (FIXED: pakai link biasa, bukan menu-item UI button) -->
+    <h2 style="margin-bottom:10px;">⚡ Quick Action</h2>
+
+    <div style="
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:30px;
+    ">
+
+      <a href="gallery.html" style="text-decoration:none; color:white; padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);">
+        🖼️ Open Gallery
+      </a>
+
+      <a href="#" style="text-decoration:none; color:white; padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);">
+        📊 View Analytics
+      </a>
+
+      <a href="#" style="text-decoration:none; color:white; padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);">
+        ⚙️ Settings
+      </a>
+
+      <a href="#" style="text-decoration:none; color:white; padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);">
+        📡 API Status
+      </a>
+
+    </div>
+
+    <!-- PREVIEW GALLERY -->
+    <h2 style="margin-bottom:10px;">🖼️ Preview Gallery</h2>
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+    ">
+
+      <img src="https://picsum.photos/id/1015/400/300" style="width:100%;border-radius:12px;">
+      <img src="https://picsum.photos/id/1011/400/300" style="width:100%;border-radius:12px;">
+      <img src="https://picsum.photos/id/1025/400/300" style="width:100%;border-radius:12px;">
+      <img src="https://picsum.photos/id/180/400/300" style="width:100%;border-radius:12px;">
+
+    </div>
+
+  </div>
+
+  <!-- GLOBAL SYSTEM -->
   <script src="script.js"></script>
   <script src="menu.js"></script>
 
