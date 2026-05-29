@@ -13,7 +13,7 @@ function createMaintenanceOverlay() {
   overlay.innerHTML = `
     <div id="maintenance-box">
       <div class="icon">🔧</div>
-      <h1>Website Maintenance</h1>
+      <h1>Shinigami Maintenance</h1>
       <p>Kami sedang melakukan peningkatan sistem agar lebih stabil dan cepat.</p>
 
       <div id="maintenance-time">Loading waktu...</div>
