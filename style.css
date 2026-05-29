@@ -162,3 +162,26 @@ body.menu-disabled #global-topbar {
   opacity: 0.3;
   pointer-events: none;
 }
+
+/* =========================
+   WHATSAPP BUTTON
+   ========================= */
+
+.wa-button {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 10px 30px rgba(37,211,102,0.3);
+}
+
+.wa-button:hover {
+  transform: translateY(-2px);
+  background: #1ebe5d;
+  box-shadow: 0 15px 35px rgba(37,211,102,0.45);
+}
