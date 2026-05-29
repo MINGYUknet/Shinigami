@@ -31,13 +31,8 @@
 <div id="sidebar" class="fixed top-0 right-0 w-72 h-full bg-black/95 p-6 transform translate-x-full transition duration-300 z-50">
   <button onclick="closeMenu()" class="text-xl mb-6">✕</button>
 
-  <ul class="space-y-4">
-    <li onclick="scrollToId('home')" class="cursor-pointer hover:text-cyan-400">Home</li>
-    <li onclick="scrollToId('gallery')" class="cursor-pointer hover:text-cyan-400">Gallery</li>
-    <li onclick="scrollToId('video')" class="cursor-pointer hover:text-cyan-400">Video</li>
-    <li onclick="scrollToId('social')" class="cursor-pointer hover:text-cyan-400">Social</li>
-    <li onclick="scrollToId('contact')" class="cursor-pointer hover:text-cyan-400">Contact</li>
-  </ul>
+  <!-- MENU AUTO LOAD -->
+  <ul id="menuList" class="space-y-4"></ul>
 </div>
 
 <!-- HERO -->
@@ -90,6 +85,9 @@
   </div>
 </section>
 
+<!-- SCRIPTS -->
+<script src="menu.js"></script>
+
 <script>
 // LOADING
 window.onload = () => {
@@ -98,18 +96,12 @@ window.onload = () => {
   }, 1500);
 };
 
-// SIDEBAR
+// SIDEBAR CONTROL
 function openMenu(){
   document.getElementById("sidebar").classList.remove("translate-x-full");
 }
 function closeMenu(){
   document.getElementById("sidebar").classList.add("translate-x-full");
-}
-
-// SCROLL
-function scrollToId(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-  closeMenu();
 }
 </script>
 
