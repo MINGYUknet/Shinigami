@@ -50,7 +50,7 @@ function createMaintenanceOverlay() {
 // INIT
 // =========================
 document.addEventListener("DOMContentLoaded", () => {
-  if (MAINTENANCE_MODE) {
+  if (WEBSITE_ONLINE) {
     createMaintenanceOverlay();
   }
 });
