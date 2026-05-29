@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   overlay.innerHTML = `
     <div id="maintenance-box">
-      <div class="icon">🔧</div>
+      <div class="icon">⚙️</div>
 
       <h1>Shinigami Maintenance</h1>
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         target="_blank"
         class="wa-button"
       >
-        💬 Join WhatsApp Channel
+        💬 Join WhatsApp Channel Official
       </a>
     </div>
   `;
