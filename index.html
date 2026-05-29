@@ -31,8 +31,14 @@
 <div id="sidebar" class="fixed top-0 right-0 w-72 h-full bg-black/95 p-6 transform translate-x-full transition duration-300 z-50">
   <button onclick="closeMenu()" class="text-xl mb-6">✕</button>
 
-  <!-- MENU AUTO LOAD -->
-  <ul id="menuList" class="space-y-4"></ul>
+  <ul class="space-y-4">
+    <li onclick="scrollTo('home')" class="cursor-pointer hover:text-cyan-400">Home</li>
+    <li onclick="scrollTo('gallery')" class="cursor-pointer hover:text-cyan-400">Gallery</li>
+    <li onclick="scrollTo('video')" class="cursor-pointer hover:text-cyan-400">Video</li>
+    <li onclick="scrollTo('social')" class="cursor-pointer hover:text-cyan-400">Social</li>
+    <li onclick="scrollTo('contact')" class="cursor-pointer hover:text-cyan-400">Contact</li>
+    <li onclick="scrollTo('askteam')" class="cursor-pointer hover:text-cyan-400">Ask Team</li>
+  </ul>
 </div>
 
 <!-- HERO -->
@@ -75,33 +81,98 @@
   <h2 class="text-2xl mb-4 font-bold">Contact Form</h2>
 
   <div class="space-y-3">
-    <input class="w-full p-3 rounded bg-gray-800" placeholder="Name"/>
-    <input class="w-full p-3 rounded bg-gray-800" placeholder="Email"/>
-    <textarea class="w-full p-3 rounded bg-gray-800" placeholder="Message"></textarea>
+    <input id="c_name" class="w-full p-3 rounded bg-gray-800" placeholder="Name"/>
+    <input id="c_email" class="w-full p-3 rounded bg-gray-800" placeholder="Email"/>
+    <textarea id="c_message" class="w-full p-3 rounded bg-gray-800" placeholder="Message"></textarea>
 
-    <button class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl hover:scale-105 transition">
+    <button onclick="sendMessage('contact')" 
+      class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl hover:scale-105 transition">
       Send Message
     </button>
   </div>
 </section>
 
-<!-- SCRIPTS -->
+<!-- ASK TEAM -->
+<section id="askteam" class="p-10">
+  <h2 class="text-2xl mb-4 font-bold">Ask Team</h2>
+
+  <div class="space-y-3">
+    <input id="a_name" class="w-full p-3 rounded bg-gray-800" placeholder="Your Name"/>
+    <input id="a_email" class="w-full p-3 rounded bg-gray-800" placeholder="Your Email"/>
+    <textarea id="a_message" class="w-full p-3 rounded bg-gray-800" placeholder="Ask something..."></textarea>
+
+    <button onclick="sendMessage('ask')" 
+      class="px-4 py-2 bg-gradient-to-r from-green-500 to-cyan-600 rounded-xl hover:scale-105 transition">
+      Send to Team
+    </button>
+  </div>
+</section>
+
+<!-- SCRIPT -->
 <script src="menu.js"></script>
 
 <script>
-// LOADING
+// loading
 window.onload = () => {
   setTimeout(() => {
     document.getElementById("loading").style.display = "none";
-  }, 1500);
+  }, 1200);
 };
 
-// SIDEBAR CONTROL
+// sidebar
 function openMenu(){
   document.getElementById("sidebar").classList.remove("translate-x-full");
 }
 function closeMenu(){
   document.getElementById("sidebar").classList.add("translate-x-full");
+}
+
+// scroll
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+  closeMenu();
+}
+
+// unified send function
+async function sendMessage(type) {
+
+  let name, email, message;
+
+  if (type === "contact") {
+    name = document.getElementById("c_name").value;
+    email = document.getElementById("c_email").value;
+    message = document.getElementById("c_message").value;
+  }
+
+  if (type === "ask") {
+    name = document.getElementById("a_name").value;
+    email = document.getElementById("a_email").value;
+    message = document.getElementById("a_message").value;
+  }
+
+  if (!name || !message) {
+    alert("Name & message wajib diisi!");
+    return;
+  }
+
+  const res = await fetch("/api/message", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type,
+      name,
+      email,
+      message
+    })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    alert("Message sent to wakeoneteam@gmail.com");
+  } else {
+    alert("Failed to send message");
+  }
 }
 </script>
 
