@@ -1,4 +1,4 @@
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!MAINTENANCE_MODE) return;
