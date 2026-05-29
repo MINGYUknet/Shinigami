@@ -7,7 +7,6 @@ const menuItems = [
   { name: "Ask Team", page: "/team/ask.html" }
 ];
 
-// render menu
 function loadMenu() {
   const menuList = document.getElementById("menuList");
 
@@ -15,16 +14,14 @@ function loadMenu() {
     const li = document.createElement("li");
 
     li.innerText = item.name;
-    li.className = "cursor-pointer hover:text-cyan-400";
+    li.className = "menu-item px-3 py-2 rounded cursor-pointer hover:text-cyan-400 hover:bg-white/5 transition";
 
     li.onclick = () => {
-      document.getElementById("frame").src = item.page;
-      closeMenu();
+      window.loadPage(item.page, item.name);
     };
 
     menuList.appendChild(li);
   });
 }
 
-// auto run
 window.addEventListener("DOMContentLoaded", loadMenu);
