@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Gallery</title>
+
+  <!-- GLOBAL STYLE -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .video-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .video-header h1 {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .video-header p {
+      opacity: 0.7;
+    }
+
+    /* SEARCH */
+    .search-box {
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-box input {
+      width: 100%;
+      max-width: 450px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    /* VIDEO GRID */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .video-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .video-card video {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: black;
+    }
+
+    .video-content {
+      padding: 15px;
+    }
+
+    .video-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .video-desc {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
+    .video-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .badge-video {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.15);
+      color: #38bdf8;
+      font-size: 12px;
+    }
+
+    .watch-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: #38bdf8;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .watch-btn:hover {
+      background: #0ea5e9;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+      .page-wrapper {
+        margin-left: 0;
+        padding-top: 90px;
+      }
+
+      #global-sidebar {
+        display: none;
+      }
+
+      #global-topbar {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- HEADER -->
+    <div class="video-header">
+      <h1>🎬 Video Gallery</h1>
+      <p>Kumpulan video modern website system</p>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchVideo"
+        placeholder="Cari video..."
+      >
+    </div>
+
+    <!-- VIDEO GRID -->
+    <div class="video-grid" id="videoGrid">
+
+      <!-- CARD -->
+      <div class="video-card">
+        <video controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+
+        <div class="video-content">
+          <div class="video-title">Demo Video 1</div>
+
+          <div class="video-desc">
+            Video demo modern UI system dengan kualitas responsive.
+          </div>
+
+          <div class="video-footer">
+            <div class="badge-video">HD Video</div>
+
+            <a href="#" class="watch-btn">
+              ▶ Watch
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="video-card">
+        <video controls>
+          <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+        </video>
+
+        <div class="video-content">
+          <div class="video-title">Demo Video 2</div>
+
+          <div class="video-desc">
+            Tampilan video gallery premium dark SaaS style.
+          </div>
+
+          <div class="video-footer">
+            <div class="badge-video">Premium</div>
+
+            <a href="#" class="watch-btn">
+              ▶ Watch
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- GLOBAL SYSTEM -->
+  <script src="script.js"></script>
+  <script src="menu.js"></script>
+
+  <!-- SEARCH SCRIPT -->
+  <script>
+    const searchInput = document.getElementById("searchVideo");
+
+    searchInput.addEventListener("keyup", function() {
+
+      const keyword = this.value.toLowerCase();
+
+      const cards = document.querySelectorAll(".video-card");
+
+      cards.forEach(card => {
+
+        const title = card.querySelector(".video-title")
+          .innerText
+          .toLowerCase();
+
+        if (title.includes(keyword)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+
+      });
+
+    });
+  </script>
+
+</body>
+</html>
