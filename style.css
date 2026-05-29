@@ -67,3 +67,98 @@ body.maintenance-active * {
   font-size: 50px;
   margin-bottom: 10px;
 }
+
+/* =========================
+   GLOBAL LAYOUT (MENU SYSTEM)
+   ========================= */
+
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: white;
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+#global-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(2,6,23,0.95);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  padding: 20px;
+  z-index: 10000;
+}
+
+#global-sidebar .brand {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#global-sidebar .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  background: rgba(255,255,255,0.04);
+  transition: 0.3s;
+}
+
+.menu-item:hover {
+  background: rgba(56,189,248,0.2);
+  border-left: 3px solid #38bdf8;
+}
+
+/* =========================
+   TOPBAR
+   ========================= */
+
+#global-topbar {
+  position: fixed;
+  top: 0;
+  left: 220px;
+  right: 0;
+  height: 60px;
+  background: rgba(2,6,23,0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 9999;
+}
+
+/* =========================
+   PAGE SHIFT CONTENT
+   ========================= */
+
+.page-wrapper {
+  margin-left: 220px;
+  padding-top: 80px;
+  padding: 30px;
+}
+
+/* =========================
+   DISABLE MODE (MAINTENANCE)
+   ========================= */
+
+body.menu-disabled #global-sidebar,
+body.menu-disabled #global-topbar {
+  opacity: 0.3;
+  pointer-events: none;
+}
